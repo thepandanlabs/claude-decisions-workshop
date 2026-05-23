@@ -143,6 +143,15 @@
     background-color: rgba(209, 125, 89, 0.12);
   }
   .heart { display: inline-block; color: #D17D59; transform: translateY(-1px); margin: 0 0.125rem; }
+  .ascii-logo-small {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #D17D59;
+    white-space: pre;
+    line-height: 1.1;
+    font-size: 0.45rem;
+  }
+  @media (min-width: 640px)  { .ascii-logo-small { font-size: 0.55rem; } }
+  @media (min-width: 1024px) { .ascii-logo-small { font-size: 0.65rem; } }
   .card > a.btn, .card-accent > a.btn { margin-top: auto; }
   .card p, .card-accent p { font-size: 0.9125rem; line-height: 1.75; }
   .card h3, .card-accent h3 { line-height: 1.3; letter-spacing: -0.01em; }
@@ -161,23 +170,18 @@
         <!-- Left column -->
         <div class="terminal-panel-left flex-1 min-w-0">
           <div class="p-6 md:p-8">
-            <!-- Terminal output preview — shows what the tool does -->
-            <div class="term-output mb-5"><span class="term-cmd">$ decisions add inbox/</span>
-<span class="term-dim">Processing 5 transcripts...</span>
-<span class="term-ok">✓</span> sample-01-mcit-licensing.txt    <span class="term-bold">3 decisions</span>  <span class="term-dim">2 action items</span>
-<span class="term-ok">✓</span> sample-02-aramco-pilot.txt       <span class="term-bold">1 decision </span>  <span class="term-dim">4 action items</span>
-<span class="term-ok">✓</span> sample-03-sama-partnership.txt   <span class="term-bold">2 decisions</span>  <span class="term-dim">3 action items</span>
-<span class="term-ok">✓</span> sample-04-ops-plan-2027.txt      <span class="term-bold">4 decisions</span>  <span class="term-dim">6 action items</span>
-<span class="term-ok">✓</span> sample-05-career-promotion.txt   <span class="term-dim">0 decisions  2 action items [CONFIDENTIAL]</span>
-<span class="term-dim">────────────────────────────────────────────────────────────</span>
-<span class="term-bold">10 decisions  17 action items</span>  <span class="term-dim">written to decisions.db</span>
+            <div class="ascii-logo-small mb-5">
+ ██████ ██       █████  ██    ██ ██████  ███████
+██      ██      ██   ██ ██    ██ ██   ██ ██
+██      ██      ███████ ██    ██ ██   ██ █████
+██      ██      ██   ██ ██    ██ ██   ██ ██
+ ██████ ███████ ██   ██  ██████  ██████  ███████
 
-<span class="term-cmd">$ decisions add inbox/</span>
-<span class="term-dim">0 new records. 5 files skipped (already processed).</span>
-
-<span class="term-cmd">$ decisions query --owner "Ahmed" --open</span>
-<span class="term-ok">→</span> <span class="term-bold">Submit ops-plan hiring proposal to HR</span>  <span class="term-dim">deadline: 2026-06-15  [ops-plan-2027]</span>
-<span class="term-ok">→</span> <span class="term-bold">Confirm T+2 settlement model with SAMA</span>  <span class="term-dim">deadline: TBD         [sama-partnership]</span></div>
+ ██████  ██████  ██████  ███████
+██      ██    ██ ██   ██ ██
+██      ██    ██ ██   ██ █████
+██      ██    ██ ██   ██ ██
+ ██████  ██████  ██████  ███████</div>
             <p class="font-mono leading-relaxed mb-4" style="color: hsl(0 0% 88%); font-size: 0.9375rem;">
               A 2-hour, coffee-shop-friendly workshop<br>for managers ready to turn meetings into searchable intelligence.
             </p>
@@ -227,6 +231,47 @@
       <p>
         This workshop builds the thing a chat box structurally cannot: a tool that <em class="text-fg-base not-italic">accumulates</em>. Every meeting you process adds to the ledger. Every commitment is searchable by owner, deadline, and topic — across weeks, across meetings, across stakeholders.
       </p>
+    </div>
+  </section>
+
+  <!-- ===== What Will You Make ===== -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-semibold mb-1 text-center">What Will You Make</h2>
+    <p class="text-fg-muted text-sm mb-6 text-center">A CLI that turns a folder of meeting transcripts into a searchable ledger — in two hours.</p>
+
+    <div class="terminal-box">
+      <span class="terminal-box-label">decisions · live session output</span>
+      <div class="p-6 md:p-8">
+        <div class="term-output"><span class="term-cmd">$ decisions add inbox/</span>
+<span class="term-dim">Processing 5 transcripts...</span>
+<span class="term-ok">✓</span> sample-01-mcit-licensing.txt    <span class="term-bold">3 decisions</span>  <span class="term-dim">2 action items</span>
+<span class="term-ok">✓</span> sample-02-aramco-pilot.txt       <span class="term-bold">1 decision </span>  <span class="term-dim">4 action items</span>
+<span class="term-ok">✓</span> sample-03-sama-partnership.txt   <span class="term-bold">2 decisions</span>  <span class="term-dim">3 action items</span>
+<span class="term-ok">✓</span> sample-04-ops-plan-2027.txt      <span class="term-bold">4 decisions</span>  <span class="term-dim">6 action items</span>
+<span class="term-ok">✓</span> sample-05-career-promotion.txt   <span class="term-dim">0 decisions  2 action items [CONFIDENTIAL]</span>
+<span class="term-dim">────────────────────────────────────────────────────────────</span>
+<span class="term-bold">10 decisions  17 action items</span>  <span class="term-dim">written to decisions.db</span>
+
+<span class="term-cmd">$ decisions add inbox/</span>
+<span class="term-dim">0 new records. 5 files skipped (already processed).</span>
+
+<span class="term-cmd">$ decisions query --owner "Ahmed" --open</span>
+<span class="term-ok">→</span> <span class="term-bold">Submit ops-plan hiring proposal to HR</span>  <span class="term-dim">deadline: 2026-06-15  [ops-plan-2027]</span>
+<span class="term-ok">→</span> <span class="term-bold">Confirm T+2 settlement model with SAMA</span>  <span class="term-dim">deadline: TBD         [sama-partnership]</span>
+
+<span class="term-cmd">$ decisions report --week 2026-W21</span>
+<span class="term-dim">## Weekly Briefing — W21 2026</span>
+
+<span class="term-dim">### Decisions made</span>
+<span class="term-ok">·</span> <span class="term-bold">Proceed with T+2 settlement model (Murabaha)</span>  <span class="term-dim">owner: joint  [sama-partnership]</span>
+<span class="term-ok">·</span> <span class="term-bold">Increase marketing budget 30% for H2</span>           <span class="term-dim">owner: Fatima [ops-plan-2027]</span>
+
+<span class="term-dim">### Pending decisions</span>
+<span class="term-ok">·</span> <span class="term-bold">3-site pilot expansion</span>  <span class="term-dim">pending CFO sign-off  [aramco-pilot]</span>
+
+<span class="term-dim">### Open action items — no deadline</span>
+<span class="term-ok">·</span> <span class="term-bold">Research Jeddah co-working options</span>  <span class="term-dim">owner: Reem  [ops-plan-2027]</span></div>
+      </div>
     </div>
   </section>
 
