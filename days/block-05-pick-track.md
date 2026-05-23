@@ -3,6 +3,21 @@
 **Time:** 01:40 – 01:50
 **Goal:** Every attendee leaves with a clear next step — one extension track chosen, and a starting prompt either already pasted into Claude Code or saved for the evening.
 
+<!-- participant-start -->
+## Block 5 — What to do
+
+10 minutes. Pick one track and start it.
+
+1. Choose by what you'd actually use in your work:
+   - **Track A** — Scheduled briefing (weekly email summary, every Monday 8am)
+   - **Track B** — Drive/Notion sync (pull transcripts automatically from your folder)
+   - **Track C** — Slack watch (monitor a channel for meeting notes)
+   - **Track D** — MCP + Claude Desktop (ask Claude "what's open from the vendor meeting?")
+2. Open the track page from the workshop home
+3. Enable Plan Mode, then run `/plan` with the track's starter prompt
+4. If time allows: exit Plan Mode and run `/implement`
+<!-- participant-end -->
+
 ## The four tracks
 
 Each one extends the `decisions` tool you built today. Pick by what you'd actually use — not by what sounds impressive.

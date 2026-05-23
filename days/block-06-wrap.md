@@ -3,6 +3,15 @@
 **Time:** 01:50 – 02:00
 **Goal:** Close cleanly. Every attendee names one thing they'll do differently. The room remembers what it just built and why.
 
+<!-- participant-start -->
+## Block 6 — What to do
+
+Be ready to share with the room. No prep needed.
+
+- What's one decision from this week's meetings that would have been missed without the tool?
+- What rule would you add to `CLAUDE.md` before using this with real transcripts?
+<!-- participant-end -->
+
 ## The shape
 
 | Time | Activity |

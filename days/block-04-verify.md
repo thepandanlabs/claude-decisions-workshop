@@ -3,6 +3,20 @@
 **Time:** 01:25 – 01:40
 **Goal:** Every attendee answers three verification questions about their enhanced tool, using a pre-labelled transcript. The discipline of "right, not just plausible" becomes concrete — without requiring any code knowledge.
 
+<!-- participant-start -->
+## Block 4 — What to do
+
+Three verification questions. Answer each one with evidence from the tool output.
+
+1. Run `decisions add sample-01.txt` — process the MCIT transcript
+2. Compare your output to the facilitator's hand-labelled answer sheet (shown on screen)
+3. Answer these questions:
+   - **Did it catch everything?** Count decisions + action items in the label vs. your output
+   - **Did it invent anything?** Any item in your output that wasn't in the transcript?
+   - **Is it consistent?** Run `decisions add sample-01.txt` again — confirm zero new rows
+4. Run `decisions export` and open `dashboard.html` — your records should appear
+<!-- participant-end -->
+
 ## Why this block exists
 
 A tool that "looks right" is not a tool. It's a demo.

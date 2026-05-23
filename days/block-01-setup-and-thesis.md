@@ -3,6 +3,16 @@
 **Time:** 00:00 – 00:20
 **Goal:** Every laptop verified working. Every attendee understands why a chat box and a tool are structurally different — not in capability, but in what persists.
 
+<!-- participant-start -->
+## Block 1 — What to do
+
+Settle in and watch. This block is the facilitator's — no code yet.
+
+1. Run `decisions --help` in your terminal when prompted.
+2. Watch the chat-tab demo first, then watch the `decisions` tool demo.
+3. When the facilitator asks *"What's missing?"* — answer out loud.
+<!-- participant-end -->
+
 ## The shape
 
 | Time | Activity |

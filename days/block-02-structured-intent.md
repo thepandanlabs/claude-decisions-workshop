@@ -3,6 +3,23 @@
 **Time:** 00:20 – 00:40
 **Goal:** Everyone has read the PRD, and everyone has written at least one extraction rule in the CLAUDE.md. Not read it — written it. That shift from reader to author is the central beat of this block.
 
+<!-- participant-start -->
+## Block 2 — What to do
+
+Open the seed repo. Your job is to write at least one extraction rule before this block ends.
+
+1. `cd decisions-seed-repo` (or wherever you cloned it)
+2. Open `PRD.md` — read the *In scope*, *Out of scope*, and *Stub* sections
+3. Open `CLAUDE.md` — read the one example rule at the top
+4. Think of one rule that matters for *your* meetings:
+   - Who owns decisions in your meeting format?
+   - Are there confidentiality constraints you need to enforce?
+   - Are there calendar or deadline conventions specific to your context?
+5. Write your rule in `CLAUDE.md` in plain English — no code required
+6. Activate Plan Mode: press **Shift + Tab twice** in Claude Code
+7. Run `/prime` and wait for Claude to acknowledge the updated spec
+<!-- participant-end -->
+
 ## What happens in this block
 
 1. **00:20 – 00:28 — Walk the PRD aloud.** Section by section. Pause at the stubs.

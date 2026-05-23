@@ -3,6 +3,31 @@
 **Time:** 00:40 – 01:25
 **Goal:** Every attendee has run v0.1, identified a gap in the output, picked a stub, edited the spec, and built the enhancement. The tool on their laptop is now better than the one that shipped.
 
+<!-- participant-start -->
+## Block 3 — What to do
+
+45 minutes. Work on your own laptop. The facilitator circulates.
+
+**Phase 1 (00:40–00:55) — Run v0.1 and observe**
+
+1. Run `decisions add inbox/` — processes all 5 sample transcripts
+2. Run `decisions query` — look at what was captured
+3. Note what's missing: action items? Tags? Confidential handling? Deadline formatting?
+
+**Phase 2 (00:55–01:00) — Pick a stub**
+
+1. Open `PRD.md` and read the stub sections
+2. Pick the stub that matches the gap you noticed — Stub A (action items) is the recommended starting point
+
+**Phase 3 (01:00–01:25) — Plan, implement, verify**
+
+1. Edit your chosen stub in `PRD.md` — fill in the requirements in plain English
+2. Update `CLAUDE.md` with any extraction rules the stub needs
+3. Enable Plan Mode (Shift + Tab twice), then run `/plan` — read and approve the plan
+4. Exit Plan Mode, then run `/implement` — Claude builds the enhancement
+5. Run `decisions add inbox/` again and compare the new output to Phase 1
+<!-- participant-end -->
+
 ## Block shape
 
 This is the longest block — 45 minutes. Most of it is working on individual laptops. The facilitator circulates, troubleshoots quietly, and resists the urge to narrate.
