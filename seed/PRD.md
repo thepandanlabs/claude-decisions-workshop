@@ -17,6 +17,7 @@ A single user, on their own laptop. No multi-tenant, no auth.
 5. `decisions query --tag <tag>` — print records with the specified tag (GOV, CONFIDENTIAL, UNCLEAR-OWNER).
 6. `decisions report --week YYYY-Www` — print a markdown briefing for the specified ISO week: decisions made, action items by owner, pending decisions.
 7. Idempotency: re-running `add` on the same folder produces zero new rows.
+8. `decisions export [--output PATH]` — write all records to a JSON file (default: `data.json` in the current directory). Consumed by `dashboard.html`.
 
 ## Out of scope (v0.1)
 
@@ -56,6 +57,8 @@ SQLite at `~/.decisions/decisions.db`. Schema in `migrations/0001_init.sql`. Pri
 - [ ] `decisions query --owner "Ahmed" --open` returns records where owner contains "Ahmed"
 - [ ] `decisions report --week 2026-W21` prints a structured markdown briefing
 - [ ] `--help` is informative on every subcommand
+- [ ] `decisions export` writes `data.json` with all ledger records
+- [ ] Opening `dashboard.html` in a browser after export renders all records visually
 
 ---
 

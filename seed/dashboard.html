@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decisions — Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background:#262624; color:hsl(0 0% 98%); font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; }
+  .accent { color:#D17D59; }
+  .card { background:#2e2e2c; border:1px solid hsl(240 3.7% 15.9%); border-radius:0.5rem; padding:1rem 1.25rem; }
+  .badge { display:inline-block; padding:0.15rem 0.5rem; border-radius:0.25rem; font-size:0.625rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; }
+  .badge-decision  { background:rgba(126,200,164,0.15); color:#7EC8A4; }
+  .badge-action    { background:rgba(209,125,89,0.15);  color:#D17D59; }
+  .badge-pending   { background:rgba(234,179,8,0.15);   color:#EAB308; }
+  .tag { display:inline-block; padding:0.1rem 0.4rem; border-radius:0.2rem; font-size:0.6rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; background:rgba(209,125,89,0.1); color:#D17D59; }
+  .tag-conf { background:rgba(234,179,8,0.1); color:#EAB308; }
+  .filter-btn { padding:0.35rem 0.85rem; border-radius:0.375rem; font-size:0.75rem; font-weight:600; border:1px solid hsl(240 3.7% 20%); background:transparent; color:hsl(0 0% 55%); cursor:pointer; transition:all 0.12s; }
+  .filter-btn.active { border-color:#D17D59; color:#D17D59; background:rgba(209,125,89,0.08); }
+  .filter-btn:hover:not(.active) { border-color:hsl(240 3.7% 30%); color:hsl(0 0% 75%); }
+  .stat-box { background:#2e2e2c; border:1px solid hsl(240 3.7% 15.9%); border-radius:0.5rem; padding:0.875rem 1.25rem; text-align:center; }
+  .sample-banner { background:rgba(234,179,8,0.08); border:1px solid rgba(234,179,8,0.25); border-radius:0.5rem; padding:0.75rem 1rem; color:#EAB308; font-size:0.75rem; margin-bottom:1.5rem; }
+  #search { background:#2e2e2c; border:1px solid hsl(240 3.7% 20%); border-radius:0.375rem; padding:0.375rem 0.75rem; color:hsl(0 0% 88%); font-size:0.8125rem; font-family:inherit; outline:none; }
+  #search:focus { border-color:#D17D59; }
+  #search::placeholder { color:hsl(0 0% 36%); }
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="max-w-4xl mx-auto px-5 py-10">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <div class="text-xs accent font-bold tracking-widest uppercase mb-1">decisions · ledger</div>
+      <h1 class="text-2xl font-bold" style="color:hsl(0 0% 98%);letter-spacing:-0.02em;">Dashboard</h1>
+    </div>
+    <div class="text-xs" style="color:hsl(0 0% 36%);" id="exported-at"></div>
+  </div>
+
+  <!-- Sample banner -->
+  <div class="sample-banner" id="sample-banner" style="display:none;">
+    ⚠ Showing sample data. Run <code style="background:rgba(234,179,8,0.12);padding:0.1rem 0.3rem;border-radius:3px;">decisions export</code> then refresh to load your real ledger.
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8" id="stats"></div>
+
+  <!-- Controls -->
+  <div class="flex flex-wrap items-center gap-2 mb-6">
+    <div class="flex gap-1" id="type-filters">
+      <button class="filter-btn active" data-type="all">All</button>
+      <button class="filter-btn" data-type="decision">Decisions</button>
+      <button class="filter-btn" data-type="action_item">Action Items</button>
+      <button class="filter-btn" data-type="pending_decision">Pending</button>
+    </div>
+    <div class="ml-auto">
+      <input id="search" type="text" placeholder="Filter by owner…" oninput="applyFilters()">
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div id="cards" class="flex flex-col gap-3"></div>
+  <div id="empty" class="text-center py-12" style="color:hsl(0 0% 36%);display:none;">No records match this filter.</div>
+
+</div>
+
+<script>
+const SAMPLE = {
+  exported_at: new Date().toISOString(),
+  is_sample: true,
+  records: [
+    { type:"decision",         content:"Proceed with regulatory sandbox application",         owner:"Mohammed",            deadline:"2026-05-31", tags:["GOV"],                    source_file:"sample-01-mcit-licensing.txt"  },
+    { type:"pending_decision", content:"Full licensing approval",                             owner:"MCIT committee",      deadline:"TBD",        tags:["GOV","UNCLEAR-OWNER"],    source_file:"sample-01-mcit-licensing.txt"  },
+    { type:"action_item",      content:"Submit technical documentation to MCIT portal",       owner:"Mohammed",            deadline:"2026-05-31", tags:["GOV"],                    source_file:"sample-01-mcit-licensing.txt"  },
+    { type:"action_item",      content:"Legal team to review data localisation clauses",      owner:"Legal team",          deadline:"2026-06-07", tags:["GOV","UNCLEAR-OWNER"],    source_file:"sample-01-mcit-licensing.txt"  },
+    { type:"pending_decision", content:"3-site pilot expansion (approved in principle)",      owner:"CFO (unnamed)",       deadline:"TBD",        tags:["UNCLEAR-OWNER"],          source_file:"sample-02-aramco-pilot.txt"    },
+    { type:"action_item",      content:"Send updated SLA to procurement",                     owner:"Omar",                deadline:"2026-06-01", tags:[],                         source_file:"sample-02-aramco-pilot.txt"    },
+    { type:"action_item",      content:"Technical integration plan from vendor side",         owner:"Technical team",      deadline:"2026-06-15", tags:["UNCLEAR-OWNER"],          source_file:"sample-02-aramco-pilot.txt"    },
+    { type:"decision",         content:"Proceed with T+2 settlement model (Murabaha)",        owner:"Joint agreement",     deadline:"2026-05-28", tags:["GOV"],                    source_file:"sample-03-sama-partnership.txt"},
+    { type:"pending_decision", content:"Final partnership MOU signature",                     owner:"Legal (both parties)",deadline:"TBD",        tags:["GOV"],                    source_file:"sample-03-sama-partnership.txt"},
+    { type:"action_item",      content:"Bank to complete internal compliance review",         owner:"Bank compliance officer",deadline:"2026-06-06",tags:["GOV"],                  source_file:"sample-03-sama-partnership.txt"},
+    { type:"action_item",      content:"Provide sandbox environment access",                  owner:"Tariq",               deadline:"2026-06-10", tags:[],                         source_file:"sample-03-sama-partnership.txt"},
+    { type:"decision",         content:"Increase marketing budget by 30% for H2 2026",        owner:"Fatima (CFO)",        deadline:"2026-07-01", tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"decision",         content:"Hire 3 engineers in Q3 2026",                         owner:"Khalid (VP Eng)",     deadline:"2026-09-30", tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"decision",         content:"Defer Jeddah office expansion to 2028",               owner:"CEO",                 deadline:null,         tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"pending_decision", content:"Strategic vendor partnership with Elm",               owner:"Board approval",      deadline:"TBD",        tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"action_item",      content:"Submit hiring plan to HR",                            owner:"Ahmed",               deadline:"2026-06-15", tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"action_item",      content:"Prepare revised budget model for board",              owner:"Fatima",              deadline:"2026-06-20", tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"action_item",      content:"Shortlist three engineering candidates",              owner:"Khalid",              deadline:"2026-07-15", tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"action_item",      content:"Draft Elm partnership proposal",                      owner:"Omar",                deadline:"2026-06-30", tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"action_item",      content:"Research Jeddah co-working options for interim use", owner:"Reem",                deadline:"TBD",        tags:[],                         source_file:"sample-04-ops-plan-2027.txt"   },
+    { type:"action_item",      content:"Submit promotion assessment to HR",                   owner:"Manager",             deadline:"2026-06-30", tags:["CONFIDENTIAL"],           source_file:"sample-05-career-promotion.txt"},
+    { type:"action_item",      content:"Present to leadership team (stretch assignment)",     owner:"Nora",                deadline:"2026-09-15", tags:["CONFIDENTIAL"],           source_file:"sample-05-career-promotion.txt"},
+  ]
+};
+
+let ALL = [];
+let activeType = 'all';
+
+async function init() {
+  let data = null;
+  try {
+    const r = await fetch('data.json');
+    if (r.ok) data = await r.json();
+  } catch(_) {}
+
+  if (!data) {
+    data = SAMPLE;
+    document.getElementById('sample-banner').style.display = 'block';
+  }
+
+  ALL = data.records || [];
+  if (data.exported_at) {
+    document.getElementById('exported-at').textContent =
+      'exported ' + new Date(data.exported_at).toLocaleString();
+  }
+
+  renderStats();
+  renderCards();
+  setupFilters();
+}
+
+function renderStats() {
+  const decisions = ALL.filter(r => r.type === 'decision').length;
+  const actions   = ALL.filter(r => r.type === 'action_item').length;
+  const pending   = ALL.filter(r => r.type === 'pending_decision').length;
+  const meetings  = new Set(ALL.map(r => r.source_file)).size;
+  const el = document.getElementById('stats');
+  el.innerHTML = [
+    ['decisions', decisions, '#7EC8A4'],
+    ['action items', actions, '#D17D59'],
+    ['pending', pending, '#EAB308'],
+    ['meetings', meetings, 'hsl(0 0% 55%)'],
+  ].map(([label, val, col]) => `
+    <div class="stat-box">
+      <div style="font-size:1.75rem;font-weight:700;color:${col};line-height:1;">${val}</div>
+      <div style="font-size:0.6875rem;color:hsl(0 0% 44%);margin-top:0.25rem;">${label}</div>
+    </div>`).join('');
+}
+
+function badgeFor(type) {
+  if (type === 'decision')         return '<span class="badge badge-decision">Decision</span>';
+  if (type === 'action_item')      return '<span class="badge badge-action">Action Item</span>';
+  if (type === 'pending_decision') return '<span class="badge badge-pending">⚠ Pending</span>';
+  return '';
+}
+
+function tagsFor(tags) {
+  return (tags || []).map(t => {
+    const cls = t === 'CONFIDENTIAL' ? 'tag tag-conf' : 'tag';
+    return `<span class="${cls}">${t}</span>`;
+  }).join(' ');
+}
+
+function sourceLabel(f) {
+  return f ? f.replace('.txt','').replace(/^sample-\d+-/,'') : '';
+}
+
+function deadlineColor(d) {
+  if (!d || d === 'TBD') return 'hsl(0 0% 36%)';
+  const diff = (new Date(d) - new Date()) / 86400000;
+  if (diff < 7)  return '#EF4444';
+  if (diff < 21) return '#EAB308';
+  return 'hsl(0 0% 55%)';
+}
+
+function renderCards() {
+  const ownerQ  = document.getElementById('search').value.toLowerCase();
+  const records = ALL.filter(r => {
+    if (activeType !== 'all' && r.type !== activeType) return false;
+    if (ownerQ && !(r.owner || '').toLowerCase().includes(ownerQ)) return false;
+    return true;
+  });
+
+  const cards = document.getElementById('cards');
+  const empty = document.getElementById('empty');
+  if (!records.length) { cards.innerHTML = ''; empty.style.display='block'; return; }
+  empty.style.display = 'none';
+
+  cards.innerHTML = records.map(r => `
+    <div class="card">
+      <div class="flex items-start justify-between gap-3 mb-2">
+        <div class="flex items-center gap-2 flex-wrap">
+          ${badgeFor(r.type)}
+          ${tagsFor(r.tags)}
+        </div>
+        <span style="font-size:0.6875rem;color:hsl(0 0% 36%);white-space:nowrap;flex-shrink:0;">[${sourceLabel(r.source_file)}]</span>
+      </div>
+      <div style="color:hsl(0 0% 92%);font-size:0.9rem;margin-bottom:0.5rem;line-height:1.45;">${r.content}</div>
+      <div style="font-size:0.6875rem;color:hsl(0 0% 44%);">
+        <span>owner: <span style="color:hsl(0 0% 66%);">${r.owner || '—'}</span></span>
+        <span style="margin:0 0.4rem;">·</span>
+        <span>deadline: <span style="color:${deadlineColor(r.deadline)};">${r.deadline || '—'}</span></span>
+        ${r.deadline_note ? `<span style="margin:0 0.4rem;">·</span><span style="color:hsl(0 0% 36%);font-style:italic;">${r.deadline_note}</span>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function setupFilters() {
+  document.querySelectorAll('[data-type]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeType = btn.dataset.type;
+      document.querySelectorAll('[data-type]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCards();
+    });
+  });
+}
+
+function applyFilters() { renderCards(); }
+
+init();
+</script>
+</body>
+</html>
