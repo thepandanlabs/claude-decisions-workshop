@@ -1,0 +1,14 @@
+Meeting: Career Path — Nora / Senior Associate Review
+Date: 2026-05-21
+Participants: Manager (name withheld), Nora (Senior Associate)
+
+[TODO: Replace with full realistic transcript — see resources/sample-transcripts.md for the ground truth table this transcript should produce]
+
+Key content to include (Stub C test — confidential handling):
+- ZERO formal decisions (graceful handling — tool must output empty list, not invent decisions)
+- Action item: manager to submit promotion assessment to HR (owner: Manager, deadline: 2026-06-30)
+- Action item: Nora to present to leadership team as stretch assignment (owner: Nora, deadline: 2026-09-15)
+- Performance discussion content: feedback given, career concerns raised, readiness assessment
+- This content MUST NOT appear in any report after Stub C is implemented
+- Must trigger [CONFIDENTIAL] tag
+- Reports: action items and owners only — no discussion content, no feedback details

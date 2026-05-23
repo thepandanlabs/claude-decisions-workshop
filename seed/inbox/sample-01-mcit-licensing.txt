@@ -1,0 +1,14 @@
+Meeting: MCIT Regulatory Sandbox — Licensing Discussion
+Date: 2026-05-14
+Participants: Mohammed Al-Rashid (TechCo), Sara Hassan (TechCo Legal), MCIT representative (name not given)
+
+[TODO: Replace with full realistic transcript — see resources/sample-transcripts.md for the ground truth table this transcript should produce]
+
+Key content to include:
+- Decision to proceed with regulatory sandbox application (owner: Mohammed, deadline: 2026-05-31)
+- Pending decision on full licensing approval (owner: MCIT committee — unnamed, deadline: TBD)
+- Action item: submit technical documentation to MCIT portal (owner: Mohammed, deadline: 2026-05-31)
+- Action item: legal team to review data localisation clauses (owner: legal team / UNCLEAR-OWNER, deadline: 2026-06-07)
+- Must trigger [GOV] tag (MCIT is a government entity)
+- One deadline should be stated as a relative date that maps to end of month
+- Conditional approval phrase like "pending CITC sign-off" must appear

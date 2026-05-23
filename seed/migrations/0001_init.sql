@@ -1,0 +1,13 @@
+-- TODO: SQLite schema for the decisions ledger
+-- Primary key: sha256 hash of source file bytes (enables deduplication)
+-- Required fields from PRD.md extracted record schema:
+--   id (TEXT, PRIMARY KEY) — sha256 of source file
+--   type (TEXT) — decision | action_item | pending_decision
+--   content (TEXT)
+--   owner (TEXT)
+--   deadline (TEXT) — YYYY-MM-DD or TBD or NULL
+--   tags (TEXT) — JSON array stored as text
+--   source_file (TEXT)
+--   meeting_date (TEXT) — YYYY-MM-DD or NULL
+--   created_at (TEXT) — ISO 8601 timestamp
+--   completed_date (TEXT) — NULL until resolved

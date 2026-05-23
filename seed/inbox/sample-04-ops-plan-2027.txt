@@ -1,0 +1,18 @@
+Meeting: Annual Operational Planning — 2027
+Date: 2026-05-20
+Participants: CEO, CFO (Fatima), VP Engineering (Khalid), Ahmed (HR), Omar (Strategy), Reem (Facilities)
+
+[TODO: Replace with full realistic transcript — see resources/sample-transcripts.md for the ground truth table this transcript should produce]
+
+Key content to include (richest file — Stub A test):
+- Decision: increase marketing budget 30% for H2 2026 (owner: Fatima/CFO, deadline: 2026-07-01)
+- Decision: hire 3 engineers in Q3 2026 (owner: Khalid/VP Engineering, deadline: 2026-09-30)
+- Decision: defer Jeddah office expansion to 2028 (owner: CEO, deadline: N/A) — a deferral is still a decision
+- Pending decision: strategic vendor partnership with Elm (owner: board approval needed, deadline: TBD)
+- Action item: submit hiring plan to HR (owner: Ahmed, deadline: 2026-06-15)
+- Action item: prepare revised budget model for board (owner: Fatima, deadline: 2026-06-20)
+- Action item: shortlist three engineering candidates (owner: Khalid, deadline: 2026-07-15)
+- Action item: draft Elm partnership proposal (owner: Omar, deadline: 2026-06-30)
+- Action item: research Jeddah co-working options for interim use (owner: Reem, deadline: TBD)
+- Jeddah discussion generates BOTH a decision and an action item
+- v0.1 produces 4 decisions, 0 action items — Stub A adds the 5 action items

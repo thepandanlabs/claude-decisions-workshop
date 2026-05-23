@@ -1,0 +1,13 @@
+Meeting: Aramco Digital — Pilot Expansion Discussion
+Date: 2026-05-16
+Participants: Omar Khalid (TechCo), Aramco Digital procurement team
+
+[TODO: Replace with full realistic transcript — see resources/sample-transcripts.md for the ground truth table this transcript should produce]
+
+Key content to include:
+- Pending decision: 3-site pilot expansion "approved in principle" pending CFO sign-off (owner: unnamed CFO, deadline: TBD)
+- Action item: send updated SLA to procurement (owner: Omar, deadline: 2026-06-01)
+- Action item: technical integration plan from vendor side (owner: "the technical team" / UNCLEAR-OWNER, deadline: 2026-06-15)
+- Action item: internal compliance review on data handling (owner: Aramco security team, deadline: TBD)
+- "Approved in principle" phrase must trigger pending_decision type, not decision
+- Full rollout timeline (Q1 2027) mentioned but is NOT a decision

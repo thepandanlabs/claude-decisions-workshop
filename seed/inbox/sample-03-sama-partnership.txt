@@ -1,0 +1,14 @@
+Meeting: SAMA Partnership — Payment Processing
+Date: 2026-05-19
+Participants: Tariq Al-Otaibi (FinTech), Bank compliance officer (not present — referenced), Legal teams both parties
+
+[TODO: Replace with full realistic transcript — see resources/sample-transcripts.md for the ground truth table this transcript should produce]
+
+Key content to include:
+- Decision: proceed with T+2 settlement model (Murabaha structure) — joint agreement, deadline: 2026-05-28
+- Pending decision: final partnership MOU signature — owner: Legal (both parties), deadline: TBD
+- Action item: bank to complete internal compliance review (owner: bank compliance officer — not present, deadline: "after Eid Al-Adha")
+- Action item: fintech to provide sandbox environment access (owner: Tariq, deadline: 2026-06-10)
+- Must trigger [GOV] tag (SAMA is a Saudi regulator)
+- "After Eid Al-Adha" deadline tests Stub D — should convert to ~2026-06-06
+- Term "Murabaha" must appear verbatim in the extracted content

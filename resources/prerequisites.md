@@ -70,14 +70,14 @@ If you're below 3.11, install via [python.org](https://www.python.org/downloads/
 
 ## 4. The seed repo cloned
 
-Don't try to clone at the coffee shop on shared Wi-Fi — do this at home:
+Don't try to clone at the coffee shop on shared Wi-Fi — do this at home.
+
+The seed lives inside the workshop repo, in the `seed/` subfolder. Clone the workshop repo and navigate into it:
 
 ```bash
-git clone <decisions-seed-repo-url>
-cd decisions-seed-repo
+git clone https://github.com/thepandanlabs/claude-decisions-workshop.git
+cd claude-decisions-workshop/seed
 ```
-
-(The facilitator will share the exact URL ahead of time.)
 
 Then install the tool and verify it runs:
 
@@ -87,15 +87,15 @@ decisions --help
 decisions add inbox/
 ```
 
-The last command should process the five sample transcripts and report 10 decisions and 17 action items written to `decisions.db`.
+The last command should process the five sample transcripts without error. v0.1 extracts decisions only — you will see 0 action items. That's expected. The stubs add the rest.
 
-The repo ships with:
+The seed folder ships with:
 
 - `PRD.md` — the one-page spec for the decisions CLI, with five stub sections.
 - `CLAUDE.md` — the extraction rules.
 - `.claude/commands/` — the four slash commands (`/prime`, `/plan`, `/implement`, `/verify`).
 - `inbox/` — five sample KSA meeting transcripts.
-- `src/decisions/` — the v0.1 implementation (decisions only — the stubs are not yet implemented).
+- `src/decisions/` — stub source files (Claude builds the implementation during the workshop).
 - `tests/` — a minimal automated test suite (one idempotency test, one schema test).
 
 ## Also helpful

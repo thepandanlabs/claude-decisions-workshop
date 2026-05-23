@@ -1,8 +1,8 @@
 # The Seed Repository
 
-The seed repo is the starting point every attendee clones before the workshop. It ships with a working v0.1 of the `decisions` tool and everything you need to build on it.
+The seed is the starting point every attendee clones before the workshop. It ships with a working v0.1 of the `decisions` tool and everything you need to build on it.
 
-**URL:** shared by the facilitator ahead of time (hosted at `github.com/thepandanlabs/decisions-seed-repo`).
+The seed lives in the `seed/` subfolder of this workshop repo — attendees clone one repo and navigate into `seed/`. No separate clone needed.
 
 ## What's in it
 
