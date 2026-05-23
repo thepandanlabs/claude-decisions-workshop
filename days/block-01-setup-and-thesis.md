@@ -30,6 +30,20 @@ decisions --help
 
 If someone's setup is broken: pair them with a working neighbour immediately. Don't spend group time on one person's install. Fix it at the break.
 
+## Opening reframe (say this before anything else at 00:10)
+
+Before the three claims, address what people think they signed up for. Many in the room heard "How to Code with AI" and imagined typing Python or JavaScript. Correct that immediately — not apologetically, but as a reveal:
+
+> *"Before we start — a quick reframe on what 'coding with AI' actually means.*
+>
+> *Traditional coding: you type instructions that a computer executes.*
+>
+> *Coding with AI: you write a spec precise enough that an AI can execute it without guessing. The AI types the instructions. You make the decisions that matter — what to build, what the rules are, what counts as correct. That's the skill. And it turns out managers are often better at it than developers, because you already know the domain.*
+>
+> *Today you're going to write a spec, approve a plan, and verify an outcome. Claude Code will write every line of Python. By the end, you'll have a working tool — and you'll understand exactly which part of that process you owned."*
+
+This reframe does three things: it catches the people who feel out of their depth, it resets expectations correctly, and it makes Claim 2 land harder.
+
 ## The three claims
 
 State each one. Don't rush past them — they are the thesis.
@@ -75,6 +89,7 @@ Now close the tab. Say:
 
 ## What the room should leave Block 1 knowing
 
+- Coding with AI means writing a spec, not typing syntax. Claude writes the code. You make the decisions that determine whether the code is right.
 - A chat session forgets. A tool accumulates. These are structural differences, not quality differences.
 - The PRD and CLAUDE.md are the decisions that matter. Claude writes the code.
 - Verification is not a techie concept — it's "did it catch what actually happened?"
